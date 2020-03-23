@@ -17,7 +17,7 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 public class Product extends AbstractEntity {
 
-    @Column(columnDefinition = "text", nullable = true)
+    @Column(columnDefinition = "text", nullable = false)
     private String productName;
 
     @Column(nullable = false)
