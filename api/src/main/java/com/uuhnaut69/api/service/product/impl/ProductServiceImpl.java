@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -31,7 +32,14 @@ public class ProductServiceImpl implements ProductService {
                 .builder()
                 .productName(faker.commerce().productName())
                 .madeIn(faker.country().name())
-                .material(faker.commerce().material()).build()));
+                .material(faker.commerce().material())
+                .price(new BigDecimal(faker.commerce().price())).build()));
         return productRepository.saveAll(products);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Product> findAll() {
+        return productRepository.findAll();
     }
 }

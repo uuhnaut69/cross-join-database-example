@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.math.BigDecimal;
 
 /**
  * @author uuhnaut
@@ -25,4 +26,7 @@ public class Product extends AbstractEntity {
 
     @Column(columnDefinition = "text", nullable = false)
     private String material;
+
+    @Column(nullable = false)
+    private BigDecimal price;
 }

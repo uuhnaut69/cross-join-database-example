@@ -1,6 +1,7 @@
 package com.uuhnaut69.api.document;
 
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -21,5 +22,6 @@ public class Review extends AbstractDocument {
 
     private String author;
 
-    private Long parentReviewId;
+    @DBRef
+    private Review parenReview;
 }

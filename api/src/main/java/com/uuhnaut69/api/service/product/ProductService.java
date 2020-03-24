@@ -12,4 +12,6 @@ public interface ProductService {
 
     List<Product> dummyProductData();
 
+    List<Product> findAll();
+
 }

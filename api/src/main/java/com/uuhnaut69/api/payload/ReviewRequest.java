@@ -19,5 +19,5 @@ public class ReviewRequest {
     @NotNull
     private String author;
 
-    private Long parentReviewId;
+    private String parentReviewId;
 }
