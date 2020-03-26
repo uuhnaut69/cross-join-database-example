@@ -1,9 +1,11 @@
 package com.uuhnaut69.api.service.review;
 
 import com.uuhnaut69.api.document.Review;
-import com.uuhnaut69.api.payload.ReviewRequest;
+import com.uuhnaut69.api.payload.request.ReviewRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.Set;
 
 
 /**
@@ -21,5 +23,7 @@ public interface ReviewService {
     Review update(String reviewId, ReviewRequest reviewRequest);
 
     void delete(String reviewId);
+
+    Set<Review> findAllByRatingGte(int rating);
 
 }

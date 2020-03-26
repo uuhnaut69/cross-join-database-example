@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Set;
+
 /**
  * @author uuhnaut
  * @project demo
@@ -16,5 +18,7 @@ public interface ReviewRepository extends MongoRepository<Review, String> {
     Page<Review> findAllByProductId(Pageable pageable, Long productId);
 
     void deleteAllByProductId(Integer productId);
+
+    Set<Review> findAllByRatingGreaterThanEqual(int rating);
 
 }

@@ -1,8 +1,10 @@
-package com.uuhnaut69.api.payload;
+package com.uuhnaut69.api.payload.request;
 
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -20,4 +22,8 @@ public class ReviewRequest {
     private String author;
 
     private String parentReviewId;
+
+    @Min(0)
+    @Max(5)
+    private int rating;
 }

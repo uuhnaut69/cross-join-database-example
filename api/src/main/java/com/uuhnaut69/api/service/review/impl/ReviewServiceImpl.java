@@ -2,7 +2,7 @@ package com.uuhnaut69.api.service.review.impl;
 
 import com.uuhnaut69.api.document.Review;
 import com.uuhnaut69.api.exception.NotFoundException;
-import com.uuhnaut69.api.payload.ReviewRequest;
+import com.uuhnaut69.api.payload.request.ReviewRequest;
 import com.uuhnaut69.api.repository.ReviewRepository;
 import com.uuhnaut69.api.service.review.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Set;
 
 
 /**
@@ -53,6 +55,12 @@ public class ReviewServiceImpl implements ReviewService {
         reviewRepository.deleteById(reviewId);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Set<Review> findAllByRatingGte(int rating) {
+        return reviewRepository.findAllByRatingGreaterThanEqual(rating);
+    }
+
     private Review save(Review review, ReviewRequest reviewRequest) {
         review.setAuthor(reviewRequest.getAuthor());
         review.setReviewContent(reviewRequest.getReviewContent());
@@ -60,6 +68,7 @@ public class ReviewServiceImpl implements ReviewService {
             Review parentReview = findById(reviewRequest.getParentReviewId());
             review.setParenReview(parentReview);
         }
+        review.setRating(reviewRequest.getRating());
         return reviewRepository.save(review);
     }
 }

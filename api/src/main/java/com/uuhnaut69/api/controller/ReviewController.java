@@ -1,7 +1,7 @@
 package com.uuhnaut69.api.controller;
 
 import com.uuhnaut69.api.document.Review;
-import com.uuhnaut69.api.payload.ReviewRequest;
+import com.uuhnaut69.api.payload.request.ReviewRequest;
 import com.uuhnaut69.api.service.review.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

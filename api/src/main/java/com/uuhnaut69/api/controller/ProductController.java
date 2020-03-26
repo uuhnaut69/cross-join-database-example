@@ -30,4 +30,5 @@ public class ProductController {
     public List<Product> generateProductData() {
         return productService.dummyProductData();
     }
+
 }

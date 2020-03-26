@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 /**
@@ -55,5 +56,11 @@ public class ProductServiceImpl implements ProductService {
         if (Envelope.Operation.DELETE.name().equals(operation.name())) {
             reviewRepository.deleteAllByProductId(Integer.parseInt(productData.get("id").toString()));
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<Product> findAllByPriceGte(BigDecimal price) {
+        return productRepository.findAllByPriceGreaterThanEqual(price);
     }
 }
