@@ -3,24 +3,31 @@ package com.uuhnaut69.api.service.product.impl;
 import com.github.javafaker.Faker;
 import com.uuhnaut69.api.model.Product;
 import com.uuhnaut69.api.repository.ProductRepository;
+import com.uuhnaut69.api.repository.ReviewRepository;
 import com.uuhnaut69.api.service.product.ProductService;
+import io.debezium.data.Envelope;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 /**
  * @author uuhnaut
  * @project demo
  */
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
+
+    private final ReviewRepository reviewRepository;
 
     private final ProductRepository productRepository;
 
@@ -41,5 +48,12 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(readOnly = true)
     public List<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public void maintainReadModel(Map<String, Object> productData, Envelope.Operation operation) {
+        if (Envelope.Operation.DELETE.name().equals(operation.name())) {
+            reviewRepository.deleteAllByProductId(Integer.parseInt(productData.get("id").toString()));
+        }
     }
 }

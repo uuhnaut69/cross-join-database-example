@@ -12,6 +12,10 @@
     <artifactId>api</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <debezium.version>0.10.0.Final</debezium.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.github.javaparser</groupId>
@@ -27,6 +31,22 @@
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-embedded</artifactId>
+            <version>${debezium.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-connector-mysql</artifactId>
+            <version>${debezium.version}</version>
         </dependency>
     </dependencies>
 

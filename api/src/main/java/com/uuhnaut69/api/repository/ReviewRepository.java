@@ -15,4 +15,6 @@ public interface ReviewRepository extends MongoRepository<Review, String> {
 
     Page<Review> findAllByProductId(Pageable pageable, Long productId);
 
+    void deleteAllByProductId(Integer productId);
+
 }
