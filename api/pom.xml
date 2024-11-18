@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <debezium.version>0.10.0.Final</debezium.version>
+        <debezium.version>2.3.0.Final</debezium.version>
         <cqengine.version>3.4.0</cqengine.version>
         <java.parser.version>3.15.14</java.parser.version>
         <java.faker.version>1.0.2</java.faker.version>
